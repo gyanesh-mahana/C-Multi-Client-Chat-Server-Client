@@ -7,3 +7,6 @@ cserver: cserver.c cserverApi.o
 cserverApi.o: cserverApi.c cserverApi.h
 	$(CC) $(CFLAGS) -c cserverApi.c -o cserverApi.o -lpthread
 
+cclient: cclient.c
+	$(CC) $(CFLAGS) cclient.c -o cclient
+
