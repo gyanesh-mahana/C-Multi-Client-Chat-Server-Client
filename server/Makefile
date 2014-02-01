@@ -44,6 +44,7 @@ SHARED_MAKE: FORCE
 
 clean:
 	@-rm -f $(BUILD_DIR)/*.o 
+	@-rm -f $(BIN)
 	@echo "Clean Finished..."
 
 FORCE:
