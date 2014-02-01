@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 #define CHATSERVER_PORT "3490"
+#define EMIL "4444"
 
 int main(int argc, char *argv[])
 {

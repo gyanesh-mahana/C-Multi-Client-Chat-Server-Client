@@ -7,7 +7,6 @@
  * Contains the function implementations of the functions called in cclient.c.
  */
 
-
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
