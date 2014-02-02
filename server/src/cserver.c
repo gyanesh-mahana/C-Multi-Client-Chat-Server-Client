@@ -32,7 +32,7 @@ int main(void)
 	struct thread_info			*thread_pair;
 	socklen_t					new_addr_len;
 	pthread_attr_t				attr;
-    int							gai_result,	sockfd, newfd;
+    int							sockfd, newfd;
 	int							yes	= 1;
 
 	// Set-up hints struct for getaddrinfo()
@@ -41,12 +41,8 @@ int main(void)
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
 
-	// Get address info based on 'hints' struct
-    gai_result = getaddrinfo(NULL, CHATSERVER_PORT, &hints, &res);
-    if (gai_result != 0) {
-		fprintf(stderr, "getaddrinfo() - %s\n", gai_strerror(gai_result));
-		exit(EXIT_FAILURE);
-    }
+	// Get local address info based on 'hints' struct
+	get_address_info(NULL, CHATSERVER_PORT, &hints, &res);
 
     for(i = res; i != NULL; i = res->ai_next) {
 		sockfd = socket(i->ai_family, i->ai_socktype, i->ai_protocol);	// Create a new unbound socket

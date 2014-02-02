@@ -4,12 +4,43 @@
  * Date:	January 22, 2014	 
  *
  * Description:
- * Contains the function implementations of the functions called in cclient.c.
+ * Contains shared function implementations for both the server and client.
  */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <netdb.h>
+#include "commonChatApi.h"
+
+
+/*=============================================================================
+ *	get_address_info()
+ *-----------------------------------------------------------------------------
+ * Description:
+ * Executes the 'getaddrinfo()' function, and does additional error
+ * checking to make sure the function returned properly.
+ *
+ * Parameters:
+ * sockfd - a socket file descriptor
+ *
+ * Return Value:
+ * NONE
+ *
+ *=============================================================================
+ */
+void get_address_info(const char *node, const char *service, const struct addrinfo *hints, struct addrinfo **res)
+{
+	int gai_result;
+
+	gai_result = getaddrinfo(node, service, hints, res);
+    if (gai_result != 0) {
+		fprintf(stderr, "get_address_info() - %s\n", gai_strerror(gai_result));
+		exit(EXIT_FAILURE);
+    }
+
+	return;
+}
 
 
 /*=============================================================================
@@ -36,4 +67,6 @@ void close_socket(int sockfd)
 		perror("close_socket()");
 		exit(EXIT_FAILURE);
 	}
+
+	return;
 }
