@@ -1,7 +1,7 @@
 ###############################################################################
 # Author: 			Emil Maric												  
-# Date Created:		Jan. 31, 2014
-# Description:		Makefile for compiling the server program.
+# Date Created:		Feb. 1, 2014
+# Description:		Makefile for compiling the client program.
 ###############################################################################
 .PHONY : all clean SHARED_MAKE
 
@@ -11,7 +11,7 @@ LIB_DIR 		:= lib
 SRC_DIR 		:= src
 SHARED_DIR		:= ../shared
 
-BIN				:= cserver
+BIN				:= cclient
 
 SRCS			:= $(wildcard $(SRC_DIR)/*.c)
 SRCS			:= $(filter-out $(SRC_DIR)/$(BIN).c, $(SRCS))

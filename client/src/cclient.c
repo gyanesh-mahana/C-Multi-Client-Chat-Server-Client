@@ -10,9 +10,12 @@
 #include <sys/socket.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <netdb.h>
+#include "commonChatApi.h"
 
 #define CHATSERVER_PORT "3490"
-#define EMIL "4444"
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +25,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2) {
 		fprintf(stderr, "usage: cclient serverip\nserverip - ip address of the chat server\n");
+		exit(EXIT_FAILURE);
 	}
 	else {
 		server_ip = argv[1];
@@ -66,9 +70,9 @@ int main(int argc, char *argv[])
 
 	freeaddrinfo(res);	// Free the addrinfo linked-list
 
-	while(1) {
-		
-	}
+	printf("Connected to the chat server!\n");
+
+	close(sockfd);
 
 	return 0;
 }
