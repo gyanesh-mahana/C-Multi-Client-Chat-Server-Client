@@ -1,17 +1,17 @@
 /*
- * File Name:	commonChatApi.c
- * Author:	Emil Maric
- * Date:	January 22, 2014	 
+ * File Name:	kernPlus.c
+ * Author:		Emil Maric
+ * Date:		January 22, 2014	 
  *
  * Description:
- * Contains shared function implementations for both the server and client.
+ * Contains common called kernel functions with additional error checking.
  */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
-#include "commonChatApi.h"
+#include "kernPlus.h"
 
 
 /*=============================================================================

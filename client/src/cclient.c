@@ -13,9 +13,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <netdb.h>
-#include "commonChatApi.h"
+#include "kernPlus.h"
+#include "shared_constants.h"
 
-#define CHATSERVER_PORT "3490"
 
 int main(int argc, char *argv[])
 {
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 		// Attempt to connect to chat server
 		if (connect(sockfd, i->ai_addr, i->ai_addrlen) != 0) {
 			perror("connect()");
-			close(sockfd);
+			close_socket(sockfd);
 			continue;
 		}	
 		
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 	printf("Connected to the chat server!\n");
 
-	close(sockfd);
+	close_socket(sockfd);
 
 	return 0;
 }

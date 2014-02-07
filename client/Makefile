@@ -16,7 +16,7 @@ BIN				:= cclient
 SRCS			:= $(wildcard $(SRC_DIR)/*.c)
 SRCS			:= $(filter-out $(SRC_DIR)/$(BIN).c, $(SRCS))
 OBJECTS			:= $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
-SHARED_OBJECTS	:= $(wildcard $(SHARED_DIR)/$(BUILD_DIR)/*.o)
+SHARED_OBJECTS	= $(wildcard $(SHARED_DIR)/$(BUILD_DIR)/*.o)
 
 BIN_OBJECTS		:= $(OBJECTS) $(BUILD_DIR)/$(BIN).o
 

@@ -17,10 +17,11 @@
 #include <netinet/in.h>
 #include <errno.h>
 #include <pthread.h>
-#include "cserverApi.h"
-#include "commonChatApi.h"
+#include "clientRecv.h"
+#include "clientProfile.h"
+#include "kernPlus.h"
+#include "shared_constants.h"
 
-#define CHATSERVER_PORT "3490"
 #define BACKLOG			5
 
 int main(void)

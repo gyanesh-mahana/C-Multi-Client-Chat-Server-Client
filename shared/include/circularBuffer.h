@@ -7,6 +7,8 @@
  * Function prototypes for the circular buffer functions.
  */
 
+#ifndef CIRCULARBUFFER_H
+#define CIRCULARBUFFER_H
 
 /*=============================================================================
  *	struct element
@@ -55,3 +57,4 @@ int read_cb(struct cb *cbuff, struct element *elem);
 
 int full_cb(struct cb *cbuff);
 
+#endif	// CIRCULARBUFFER_H

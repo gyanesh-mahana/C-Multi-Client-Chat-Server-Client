@@ -1,17 +1,16 @@
 /*
- * File Name:		cserverApi.h
+ * File Name:		clientProfile.h
  * Author:			Emil Maric
- * Date Created:	January 16, 2014	 
+ * Date Created:	Jan. 16, 2014	 
  *
  * Description:
- * Contains shared structs and function prototypes for the functions in
- * cserverApi.h and cserver.c.
+ * Contains the prototypes for clientProfile.c
  */
 
-#ifndef CSERVERAPI_H
-#define CSERVERAPI_H
+#ifndef CLIENTPROFILE_H
+#define CLIENTPROFILE_H
 
-#define USERNAME_MAX 20
+#define USERNAME_MAX_LENGTH 20
 
 /*=============================================================================
  *	struct thread_info
@@ -62,7 +61,7 @@ struct thread_info {
  *=============================================================================
  */
 struct new_user {
-	char					username[USERNAME_MAX];
+	char					username[USERNAME_MAX_LENGTH];
 	char					ip_address[INET6_ADDRSTRLEN];
 	unsigned short			port;
 	int						sockfd;
@@ -71,10 +70,6 @@ struct new_user {
 };
 
 
-void close_socket(int sockfd);
-
 int create_user_profile(struct sockaddr_storage *sas, struct new_user *info);
 
-void *client_recv_handler(void *client_info);
-
-#endif	//CSERVERAPI_H
+#endif	// CLIENTPROFILE_H

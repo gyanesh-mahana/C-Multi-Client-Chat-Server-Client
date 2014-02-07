@@ -1,5 +1,5 @@
 /*
- * File Name:	cserverApi.c
+ * File Name:	clientProfile.c
  * Author:	Emil Maric
  * Date:	January 16, 2014	 
  *
@@ -8,19 +8,18 @@
  */
 
 
-#include <unistd.h>
+//#include <unistd.h>
 #include <stdio.h>
 #include <arpa/inet.h>
-#include <error.h>
+//#include <error.h>
 #include <netinet/in.h>
-#include <pthread.h>
 #include <string.h>
-#include <sys/types.h>
-#include "cserverApi.h"
-#include <sys/wait.h>
-#include <signal.h>
-#include <netdb.h>
-#include "commonChatApi.h"
+#include <sys/socket.h>
+//#include <sys/types.h>
+//#include <sys/wait.h>
+//#include <signal.h>
+//#include <netdb.h>
+#include "clientProfile.h"
 
 
 /*=============================================================================
@@ -82,28 +81,4 @@ int create_user_profile(struct sockaddr_storage *sas, struct new_user *info)
 }
 
 
-/*=============================================================================
- *	client_receive_handler()
- *-----------------------------------------------------------------------------
- * Description:
- * Handles incomming messages from the client.
- *
- * Parameters:
- * *data	- holds information about the client
- *
- * Return Value:
- * NONE
- *
- *=============================================================================
- */
-void *client_recv_handler(void *data) 
-{
-	//struct new_user		*client_info = (struct new_user *)data;
 
-	//while(1) {
-	//	if(recv(client_info->sockfd, ) < 0) {
-	//	}
-	//}
-
-	pthread_exit(NULL);
-}
