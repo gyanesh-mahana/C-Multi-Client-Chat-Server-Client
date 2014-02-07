@@ -11,7 +11,7 @@ Libraries:
 
 ## How To Build
 ```bash
-git clone [url]
+git clone https://github.com/EmilMaric/C-Multi-Client-Chat-Server-Client.git
 ```
 `cd` to either `server/` or `client/`, depending on what you want to build. 
 
