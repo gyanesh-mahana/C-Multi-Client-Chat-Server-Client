@@ -8,17 +8,11 @@
  */
 
 
-//#include <unistd.h>
 #include <stdio.h>
 #include <arpa/inet.h>
-//#include <error.h>
 #include <netinet/in.h>
 #include <string.h>
 #include <sys/socket.h>
-//#include <sys/types.h>
-//#include <sys/wait.h>
-//#include <signal.h>
-//#include <netdb.h>
 #include "clientProfile.h"
 
 

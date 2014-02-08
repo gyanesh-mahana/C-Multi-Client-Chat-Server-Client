@@ -1,19 +1,17 @@
 /*
- * File Name:	clientRecv.c
+ * File Name:	serverMsgHandler.c
  * Author:		Emil Maric
  * Date:		Feb. 6, 2014	 
  *
  * Description:
- * Defines the client receiving thread on the server. In essense, this
- * thread exists on the server, and is responsible for handling messages
- * sent by the client, to the server. One of these threads is created for
- * each new client connected to the server.
+ * Defines the threads the server assigns to each connected client to handle
+ * messages sent from and to the client.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "clientRecv.h"
+#include "serverMsgHandler.h"
 
 /*=============================================================================
  *	client_receive_handler()
@@ -29,7 +27,7 @@
  *
  *=============================================================================
  */
-void *client_recv_handler(void *data) 
+void *server_recv_handler(void *data) 
 {
 	//struct new_user		*client_info = (struct new_user *)data;
 

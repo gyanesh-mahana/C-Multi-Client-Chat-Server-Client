@@ -17,7 +17,7 @@
 #include <netinet/in.h>
 #include <errno.h>
 #include <pthread.h>
-#include "clientRecv.h"
+#include "serverMsgHandler.h"
 #include "clientProfile.h"
 #include "kernPlus.h"
 #include "shared_constants.h"
@@ -100,7 +100,7 @@ int main(void)
 		user_info = (struct new_user *)malloc(sizeof(struct new_user));	// Allocate a new_user struct to store user information
 		if (user_info == NULL) {
 			fprintf(stderr, "Failed to allocate memory for a new_user struct\n");
-			close(newfd);
+			close_socket(newfd);
 			exit(EXIT_FAILURE);
 		}
 		else {
@@ -127,7 +127,7 @@ int main(void)
 
 		user_info->sockfd = newfd;
 
-		pthread_create(&(user_info->thread_pair->recv_tid), &attr, client_recv_handler, (void *)user_info);
+		pthread_create(&(user_info->thread_pair->recv_tid), &attr, server_recv_handler, (void *)user_info);
 		// pthread_create(&(user_info->thread_pair->send_tid), &attr, client_send_handler, (void *)user_info);	** FEATURE NOT AVAILABLE YET
 
 		// Cleaning up
