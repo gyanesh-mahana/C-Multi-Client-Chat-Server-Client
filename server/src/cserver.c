@@ -21,8 +21,8 @@
 #include "clientProfile.h"
 #include "kernPlus.h"
 #include "shared_constants.h"
+#include "server_constants.h"
 
-#define BACKLOG			5
 
 int main(void)
 {

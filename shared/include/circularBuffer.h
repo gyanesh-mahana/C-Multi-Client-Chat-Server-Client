@@ -10,21 +10,6 @@
 #ifndef CIRCULARBUFFER_H
 #define CIRCULARBUFFER_H
 
-/*=============================================================================
- *	struct element
- *-----------------------------------------------------------------------------
- * Description:
- * Defines the struct-type for the elements within the circular buffer.
- *
- * Parameters:
- * letter	- holds a letter from the packet 
- *
- *=============================================================================
- */
-struct element{
-	char letter;
-};
-
 
 /*=============================================================================
  *	struct cb
@@ -36,25 +21,26 @@ struct element{
  * tail			- tail index of the circular buffer
  * head			- head index of the circular buffer
  * size			- size of the circular buffer
- * elements		- pointer that 
- *				  contains all the elements of the circular buffer
+ * buff			- pointer to the character buffer
  *
  *=============================================================================
  */
 struct cb {
-	int					tail;
-	int					head;
-	int					size;
-	struct element*		elements;
+	int			tail;
+	int			head;
+	int			size;
+	char *		buff;
 };
 
 
 int init_cb(struct cb *cbuff, int size);
 
-int write_cb(struct cb *cbuff, struct element *elem);
+int write_cb(struct cb *cbuff, char letter);
 
-int read_cb(struct cb *cbuff, struct element *elem);
+int read_cb(struct cb *cbuff, char *letter);
 
 int full_cb(struct cb *cbuff);
+
+int lenLeft_cb(struct cb *cbuff);
 
 #endif	// CIRCULARBUFFER_H

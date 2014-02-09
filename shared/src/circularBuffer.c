@@ -42,10 +42,10 @@ int init_cb(struct cb *cbuff, int size)
 	cbuff->tail = 0;
 	cbuff->head = 0;
 	cbuff->size = size + 1;
-	cbuff->elements = (struct element*) malloc(size * sizeof(struct element));
+	cbuff->buff = (char*) malloc( (cbuff->size) * sizeof(char) );
 
 	// Malloc failed
-	if (!(cbuff->elements)){
+	if ( !(cbuff->buff) ){
 		fprintf(stdout, "ERROR init_cb: malloc() failed to allocate memory\n");
 		return -1;
 	}
@@ -62,14 +62,14 @@ int init_cb(struct cb *cbuff, int size)
  *
  * Parameters:
  * cbuff	- pointer to a circular buffer
- * elem		- element containing character
+ * letter	- character to write
  *
  * RETURN
  * Returns '0' on success, and '-1' on failure.
  *
  *=============================================================================
 */
-int write_cb(struct cb *cbuff, struct element *elem)
+int write_cb(struct cb *cbuff, char letter)
 {
 	if (!cbuff){
 		fprintf(stdout, "ERROR write_cb(): received null pointer\n");
@@ -77,12 +77,12 @@ int write_cb(struct cb *cbuff, struct element *elem)
 	}
 
 	// Check to make sure we are not overwriting data
-	if (full_cb(cbuff)){
+	if ( full_cb(cbuff) ){
 		fprintf(stdout, "Circular Buffer is full. Buffer must be read or cleared.\n");
 		return -1;
 	}
 
-	cbuff->elements[cbuff->head] = *elem;
+	cbuff->buff[cbuff->head] = letter;
 	cbuff->head = (cbuff->head + 1) % cbuff->size;
 
 	return 0;	
@@ -97,21 +97,22 @@ int write_cb(struct cb *cbuff, struct element *elem)
  *
  * Parameters:
  * cbuff	- pointer to a circular buffer
- * elem		- element that will contain the read character
+ * letter	- pointer that will contain the character read from the circular
+ *			  buffer
  *
  * RETURN
  * Returns '0' on success, and '-1' on failure.
  *
  *=============================================================================
 */
-int read_cb(struct cb *cbuff, struct element *elem)
+int read_cb(struct cb *cbuff, char *letter)
 {
 	if (!cbuff){
 		fprintf(stdout, "ERROR read_cb(): received null pointer\n");
 		return -1;
 	}
 
-	*elem = cbuff->elements[cbuff->tail];
+	*letter = cbuff->buff[cbuff->tail];
 	cbuff->tail = (cbuff->tail + 1) % cbuff->size;
 
 	return 0;
@@ -141,4 +142,35 @@ int full_cb(struct cb *cbuff)
 	}
 	
 	return (cbuff->head + 1) % cbuff->size == cbuff->tail % cbuff->size;
+}
+
+
+/*=============================================================================
+ *	lenLeft_cb()
+ *-----------------------------------------------------------------------------
+ * Description:
+ * Determines whether or not the circular buffer is full
+ *
+ * Parameters:
+ * cbuff	- pointer to a circular buffer
+ *
+ * RETURN
+ * Returns how many spaces are left in the circular buffer, and '-1' if there 
+ * is an error.
+ *
+ *=============================================================================
+*/
+int lenLeft_cb(struct cb *cbuff)
+{
+	if (!cbuff){
+		fprintf(stdout, "ERROR full_cb(): received null pointer\n");
+		return -1;
+	}
+	
+	if ( cb->tail > cb->head ){
+		return (cb->tail) - (cb->head);
+	}
+	else {
+		return (cb->size) - (cb->head);
+	}
 }
