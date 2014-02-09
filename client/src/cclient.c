@@ -107,8 +107,13 @@ int main(int argc, char *argv[])
 
 void* SendMessage(void* threadId)
 {
-        do{
-           printf("Inside %s\n",__FUNCTION__);
+    char packet[MAX_PACKET_LENGTH];
+    char header_size[HEADER_PAYLOAD_LENGTH];
+    char* message = "Hello Emil";
+    int size = strlen(message);
+
+      do{
+            printf("Inside %s\n",__FUNCTION__);
            sleep(2);
        }while(1);
 }
