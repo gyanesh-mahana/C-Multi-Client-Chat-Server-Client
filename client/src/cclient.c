@@ -108,9 +108,16 @@ int main(int argc, char *argv[])
 void* SendMessage(void* threadId)
 {
     char packet[MAX_PACKET_LENGTH];
-    char header_size[HEADER_PAYLOAD_LENGTH];
+    unsigned char header_size[HEADER_PAYLOAD_LENGTH];
     char* message = "Hello Emil";
     int size = strlen(message);
+    
+
+    for( i = (HEADER_PAYLOAD_LENGTH-1); i >= 0; --i){
+        header_size[i] = (unsigned char)(size & 0xFF);
+        size >>= 8;
+
+    }
 
       do{
             printf("Inside %s\n",__FUNCTION__);
