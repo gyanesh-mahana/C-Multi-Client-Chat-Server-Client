@@ -114,8 +114,7 @@ void* SendMessage(void* threadId)
     
 
     for( i = (HEADER_PAYLOAD_LENGTH-1); i >= 0; --i){
-        header_size[i] = (unsigned char)(size & 0xFF);
-        size >>= 8;
+        header_size[i] = (unsigned char)( ((size|0x0)>>((i-(HEADER_PAYLOAD_LENGTH-1))*8) )& 0xFF);
 
     }
 
