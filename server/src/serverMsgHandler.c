@@ -11,9 +11,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <stdint.h>
+#include <sys/socket.h>
 #include "circularBuffer.h"
 #include "serverMsgHandler.h"
-#include "server_constants.h"
+#include "shared_constants.h"
+#include "clientProfile.h"
 
 /*=============================================================================
  *	client_receive_handler()
@@ -45,25 +48,25 @@ void *server_recv_handler(void *data)
 	}
 
 	while(1) {
-		if (buffRemaining = lenLeft_cb(&packetBuff) == -1 ){
+		if ( (buffRemaining = lenLeft_cb(&packetBuff)) == -1 ){
 /* NEEDS CLEANUP */
 			pthread_exit(NULL);
 		}
 
-		if(msgLen = recv(client_info->sockfd, packetBuff->buff[packetBuff->head], buffRemaining, NULL) <= 0){
+		if( (msgLen = recv(client_info->sockfd, &(packetBuff.buff[packetBuff.head]), buffRemaining, 0)) <= 0){
 /* NEEDS CLEANUP */
 			pthread_exit(NULL);
 		}
 
 		// Adjust the head pointer to match the end of the new data
-		packetBuff->head = ((packetBuff->head) + msgLen) % (packetBuff->size);
+		packetBuff.head = ((packetBuff.head) + msgLen) % (packetBuff.size);
 
 		while(1){
 
 			// If our payloadHeader buffer is not full, try to read the rest in from the circular buffer
 			if (payload_header_count != HEADER_PAYLOAD_LENGTH){
-				while (payload_header_count < HEADER_PAYLOAD_LENGTH || packetBuff->tail != packetBuff->head ){
-					if ( read_cb(&packetBuff, &(payloadHeader[payload_header_count])) == -1 ){
+				while (payload_header_count < HEADER_PAYLOAD_LENGTH || packetBuff.tail != packetBuff.head ){
+					if ( read_cb(&packetBuff, (char *)&(payloadHeader[payload_header_count])) == -1 ){
 /* NEEDS CLEANUP */		pthread_exit(NULL);
 					}
 
@@ -71,7 +74,7 @@ void *server_recv_handler(void *data)
 				}
 				
 				// If this is true, then the circular buffer is empty. This means that we need to fetch more data.
-				if (packetBuff->tail == packetBuff->head){
+				if (packetBuff.tail == packetBuff.head){
 					break;
 				}
 			}

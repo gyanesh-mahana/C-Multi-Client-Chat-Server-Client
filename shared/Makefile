@@ -14,7 +14,7 @@ OBJECTS			:= $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 CC := gcc
 CFLAGS := -g -Wall -Werror
 CPPFLAGS := -I$(INCLUDE_DIR)
-LDFLAGS := -g -lpthread
+LDFLAGS := -g -lpthread -lm
 
 .PHONY : all clean
 

@@ -23,7 +23,7 @@ BIN_OBJECTS		:= $(OBJECTS) $(BUILD_DIR)/$(BIN).o
 CC 				:= gcc
 CFLAGS 			:= -g -Wall -Werror
 CPPFLAGS 		:= -I$(INCLUDE_DIR) -I$(SHARED_DIR)/$(INCLUDE_DIR)
-LDFLAGS 		:= -g -lpthread -lmath
+LDFLAGS 		:= -g -lpthread -lm
 
 
 all: $(BIN)

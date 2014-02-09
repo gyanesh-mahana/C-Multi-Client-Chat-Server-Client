@@ -167,10 +167,10 @@ int lenLeft_cb(struct cb *cbuff)
 		return -1;
 	}
 	
-	if ( cb->tail > cb->head ){
-		return (cb->tail) - (cb->head);
+	if ( cbuff->tail > cbuff->head ){
+		return (cbuff->tail) - (cbuff->head);
 	}
 	else {
-		return (cb->size) - (cb->head);
+		return (cbuff->size) - (cbuff->head);
 	}
 }

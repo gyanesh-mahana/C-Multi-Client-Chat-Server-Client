@@ -10,6 +10,8 @@
 #ifndef CLIENTPROFILE_H
 #define CLIENTPROFILE_H
 
+#include "shared_constants.h"
+#include <netinet/in.h>
 /*=============================================================================
  *	struct thread_info
  *-----------------------------------------------------------------------------
