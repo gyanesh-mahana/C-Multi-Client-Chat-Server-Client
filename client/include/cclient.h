@@ -21,8 +21,6 @@
 #ifndef CCLIENT_H
 #define CCLIENT_H
 
-void* SendMessage(void* threadId);
-void* ReceiveMessage(void* threadId);
 
 
 #endif

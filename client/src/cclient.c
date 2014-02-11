@@ -14,8 +14,8 @@
 #include <unistd.h>
 #include <netdb.h>
 
-#include "commonChatApi.h"
 #include "cclient.h"
+#include "clientMsgHandler.h"
 
 #define CHATSERVER_PORT "3490"
 #define NUM_THREADS 2
@@ -103,34 +103,6 @@ int main(int argc, char *argv[])
 	close_socket(sockfd);
 
 	return 0;
-}
-
-void* SendMessage(void* threadId)
-{
-    char packet[MAX_PACKET_LENGTH];
-    unsigned char header_size[HEADER_PAYLOAD_LENGTH];
-    char* message = "Hello Emil";
-    int size = strlen(message);
-    
-
-    for( i = (HEADER_PAYLOAD_LENGTH-1); i >= 0; --i){
-        header_size[i] = (unsigned char)( ((size|0x0)>>(((HEADER_PAYLOAD_LENGTH-(i+1))*8) & 0xFF);
-
-    }
-
-      do{
-            printf("Inside %s\n",__FUNCTION__);
-           sleep(2);
-       }while(1);
-}
-
-void* ReceiveMessage(void* threadId)
-{
-        do{
-           printf("Inside %s\n",__FUNCTION__);
-           sleep(2);
-
-        }while(1);
 }
 
 
