@@ -24,12 +24,13 @@
 #include "shared_constants.h"
 #include "clientMsgHandler.h"
 
-void* SendMessage(void* threadId)
+void* SendMessage(void* sockfd)
 {
     char packet[MAX_PACKET_LENGTH];
     unsigned char header_size[HEADER_PAYLOAD_LENGTH];
     char* message = "Hello Emil";
     int size = strlen(message);
+    int sockid = *((int*)sockfd);
     int len;
     int i;
     
@@ -46,7 +47,7 @@ void* SendMessage(void* threadId)
    
     strcpy( &packet[i], message);
 
-    sendall(atoi(CHATSERVER_PORT), packet, &len);
+    sendall(sockid, packet, &len);
 
     do{ 
         printf("Inside %s\n",__FUNCTION__);

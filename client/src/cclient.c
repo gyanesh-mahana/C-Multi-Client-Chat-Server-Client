@@ -82,14 +82,14 @@ int main(int argc, char *argv[])
 
 	printf("Connected to the chat server!\n");
 
-	if(( pthread_create(&threads[0], NULL, SendMessage, (void*)t) )){
+	if(( pthread_create(&threads[0], NULL, SendMessage, (void*)sockfd) )){
               printf("Error creating SendMessage thead\n");
               exit(-1);
     }
-    //if(!( pthread_create(&threads[0], NULL, ReceiveMessage, (void*)t) )){
-      //        printf("Error creating SendMessage thead\n");
-        //      exit(-1);
-       //}
+    if(!( pthread_create(&threads[0], NULL, ReceiveMessage, (void*)t) )){
+            printf("Error creating SendMessage thead\n");
+          exit(-1);
+     }
 
     while(1){
 		continue;
