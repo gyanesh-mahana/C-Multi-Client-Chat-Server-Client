@@ -55,8 +55,10 @@ void *server_recv_handler(void *data)
 
 		if( (msgLen = recv(client_info->sockfd, &(packetBuff.buff[packetBuff.head]), buffRemaining, 0)) <= 0){
 /* NEEDS CLEANUP */
+			printf("Received message\n");
 			pthread_exit(NULL);
 		}
+
 
 		// Adjust the head pointer to match the end of the new data
 		packetBuff.head = ((packetBuff.head) + msgLen) % (packetBuff.size);

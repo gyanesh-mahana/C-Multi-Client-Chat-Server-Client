@@ -15,6 +15,13 @@
  *
  * =====================================================================================
  */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <pthread.h>
+#include "shared_constants.h"
 #include "clientMsgHandler.h"
 
 void* SendMessage(void* threadId)
@@ -45,6 +52,8 @@ void* SendMessage(void* threadId)
         printf("Inside %s\n",__FUNCTION__);
         sleep(2);
     }while(1);
+
+	pthread_exit(NULL);
 }
 
 void* ReceiveMessage(void* threadId)
@@ -54,6 +63,8 @@ void* ReceiveMessage(void* threadId)
     sleep(2);
 
     }while(1);
+
+	pthread_exit(NULL);
 }
 
 
