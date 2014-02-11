@@ -55,10 +55,8 @@ void *server_recv_handler(void *data)
 
 		if( (msgLen = recv(client_info->sockfd, &(packetBuff.buff[packetBuff.head]), buffRemaining, 0)) <= 0){
 /* NEEDS CLEANUP */
-			printf("Received message\n");
 			pthread_exit(NULL);
 		}
-
 
 		// Adjust the head pointer to match the end of the new data
 		packetBuff.head = ((packetBuff.head) + msgLen) % (packetBuff.size);
@@ -67,7 +65,7 @@ void *server_recv_handler(void *data)
 
 			// If our payloadHeader buffer is not full, try to read the rest in from the circular buffer
 			if (payload_header_count != HEADER_PAYLOAD_LENGTH){
-				while (payload_header_count < HEADER_PAYLOAD_LENGTH || packetBuff.tail != packetBuff.head ){
+				while (payload_header_count < HEADER_PAYLOAD_LENGTH && packetBuff.tail != packetBuff.head ){
 					if ( read_cb(&packetBuff, (char *)&(payloadHeader[payload_header_count])) == -1 ){
 /* NEEDS CLEANUP */		pthread_exit(NULL);
 					}
@@ -85,9 +83,6 @@ void *server_recv_handler(void *data)
 			for (i = 0; i < HEADER_PAYLOAD_LENGTH; i++){
 				payload_length = (PAYLOAD_LENGTH_TYPE) ( (( (int)-1 & payloadHeader[i]) << ((HEADER_PAYLOAD_LENGTH - i - 1)* 8) ) | payload_length );
 			}
-
-			printf("%i\n", payload_length);
-
 		}
 	}
 

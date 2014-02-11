@@ -31,7 +31,6 @@ int main(int argc, char *argv[])
 
     //Variables for threads
       pthread_t threads[NUM_THREADS];
-      long t = 5;
 
 	if (argc != 2) {
 		fprintf(stderr, "usage: cclient serverip\nserverip - ip address of the chat server\n");
@@ -82,14 +81,14 @@ int main(int argc, char *argv[])
 
 	printf("Connected to the chat server!\n");
 
-	if(( pthread_create(&threads[0], NULL, SendMessage, (void*)sockfd) )){
+	if(pthread_create(&threads[0], NULL, SendMessage, (void*)&sockfd)){
               printf("Error creating SendMessage thead\n");
               exit(-1);
     }
-    if(!( pthread_create(&threads[0], NULL, ReceiveMessage, (void*)t) )){
-            printf("Error creating SendMessage thead\n");
-          exit(-1);
-     }
+    //if(!( pthread_create(&threads[0], NULL, ReceiveMessage, (void*)t) )){
+      //      printf("Error creating SendMessage thead\n");
+        //  exit(-1);
+     //}
 
     while(1){
 		continue;
