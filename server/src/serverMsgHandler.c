@@ -81,7 +81,7 @@ void *server_recv_handler(void *data)
 
 			// Convert the char buffer into an integer that we can use
 			for (i = 0; i < HEADER_PAYLOAD_LENGTH; i++){
-				payload_length = ( ((int) 255 & payloadHeader[i]) << (i * 8) ) | payload_length;
+				payload_length = (PAYLOAD_LENGTH_TYPE) ( (( (int)-1 & payloadHeader[i]) << ((HEADER_PAYLOAD_LENGTH - i - 1)* 8) ) | payload_length );
 			}
 
 			printf("%i\n", payload_length);
