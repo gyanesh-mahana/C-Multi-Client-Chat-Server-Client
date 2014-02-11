@@ -13,6 +13,12 @@
 #include <string.h>
 #include <unistd.h>
 #include <netdb.h>
+
+#include "cclient.h"
+#include "clientMsgHandler.h"
+
+#define NUM_THREADS 2
+
 #include "kernPlus.h"
 #include "shared_constants.h"
 
@@ -22,6 +28,10 @@ int main(int argc, char *argv[])
 	struct addrinfo		hints, *res, *i;
 	int					sockfd, gai_result;
 	char				*server_ip;
+
+    //Variables for threads
+      pthread_t threads[NUM_THREADS];
+      long t = 5;
 
 	if (argc != 2) {
 		fprintf(stderr, "usage: cclient serverip\nserverip - ip address of the chat server\n");
@@ -72,7 +82,27 @@ int main(int argc, char *argv[])
 
 	printf("Connected to the chat server!\n");
 
+      if(!( pthread_create(&threads[0], NULL, SendMessage, (void*)t) )){
+              printf("Error creating SendMessage thead\n");
+              exit(-1);
+       }
+      if(!( pthread_create(&threads[0], NULL, ReceiveMessage, (void*)t) )){
+              printf("Error creating SendMessage thead\n");
+              exit(-1);
+       }
+
+       while(1){
+             printf("From %s function\n", __FUNCTION__);
+             sleep(2);
+       }
+
+             
+         
+      
 	close_socket(sockfd);
 
 	return 0;
 }
+
+
+

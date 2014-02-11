@@ -10,8 +10,8 @@ Libraries:
 * libcurses5-dev
 
 ## How To Build
-```
-git clone [url]
+```bash
+git clone https://github.com/EmilMaric/C-Multi-Client-Chat-Server-Client.git
 ```
 `cd` to either `server/` or `client/`, depending on what you want to build. 
 
@@ -25,7 +25,7 @@ Running the server is as simple as `./cserver`.
 For the client, `./cclient <server_ip_address>`. 
 
 ## Developer Workflow
-```
+```bash
 cd server/
 make clean
 make
