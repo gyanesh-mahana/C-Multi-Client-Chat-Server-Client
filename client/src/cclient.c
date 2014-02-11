@@ -17,7 +17,6 @@
 #include "cclient.h"
 #include "clientMsgHandler.h"
 
-#define CHATSERVER_PORT "3490"
 #define NUM_THREADS 2
 
 #include "kernPlus.h"
