@@ -17,8 +17,7 @@
 #include <netinet/in.h>
 #include <errno.h>
 #include <pthread.h>
-#include "serverMsgHandler.h"
-#include "clientProfile.h"
+#include "server_recv_handler.h"
 #include "kernPlus.h"
 #include "shared_constants.h"
 #include "server_constants.h"

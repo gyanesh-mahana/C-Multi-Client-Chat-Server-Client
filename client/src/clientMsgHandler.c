@@ -27,21 +27,21 @@
 void* SendMessage(void* sockfd)
 {
     char packet[MAX_PACKET_LENGTH];
-    unsigned char header_size[HEADER_PAYLOAD_LENGTH];
-    char* message = "Hello Emil";
+    unsigned char header_size[HEADER_LENGTH];
+    char* message = "Hello Emil. You are the coolest person in the world. Way cooler than Kieren.";
     int size = strlen(message);
     int sockid = *((int*)sockfd);
     int len;
     int i;
     
-    len = size + HEADER_PAYLOAD_LENGTH;
+    len = size + HEADER_LENGTH;
 
-    for( i = (HEADER_PAYLOAD_LENGTH-1); i >= 0; --i){
-        header_size[i] = (unsigned char)((size|0x0)>>(((HEADER_PAYLOAD_LENGTH-(i+1))*8) & 0xFF) );
+    for( i = (HEADER_LENGTH-1); i >= 0; --i){
+        header_size[i] = (unsigned char)((size|0x0)>>(((HEADER_LENGTH-(i+1))*8) & 0xFF) );
 
     }   
     
-    for(i = 0; i < HEADER_PAYLOAD_LENGTH; ++i){
+    for(i = 0; i < HEADER_LENGTH; ++i){
           packet[i] = header_size[i];
     }
    
