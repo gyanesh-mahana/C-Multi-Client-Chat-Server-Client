@@ -13,11 +13,11 @@ Libraries:
 ```bash
 git clone https://github.com/EmilMaric/C-Multi-Client-Chat-Server-Client.git
 ```
-`cd` to either `server/` or `client/`, depending on what you want to build. 
+`cd` to the project root directory. Run `make` to build object files and binaries. Run `make clean` if you want to remove the object files and binaries.
 
-Once inside, just run `make`, you will get a binary of either `cserver` or `cclient`.
+On success, you will get a `cserver` or `cclient` binary file in `./server/` or `./client/` respectively.
 
-To clean the build, run `make clean`.
+Alternatively, if you only want to test either the client or server, a Makefile is available in either `./server/` or `./client/` with the same options as listed above. The difference is, only the object files and binaries for either the client or server will be built.
 
 ## Executing Binaries
 Running the server is as simple as `./cserver`.
@@ -26,21 +26,16 @@ For the client, `./cclient <server_ip_address>`.
 
 ## Developer Workflow
 ```bash
-cd server/
+cd <project_root_dir>
 make clean
 make
-./cserver
+./server/cserver
 
 // In a new terminal
 netstat -na | grep 3490   /* Port 3490 should be listening */
 
-cd client/
-make clean
-make
-./cclient 127.0.0.1
+./client/cclient 127.0.0.1
 
 netstat -na | grep <Port number shown on server>
 ```
 On the server terminal, you should see text come out showing information about the client connection. You can grep for that port number to check that the server is getting the right information. 
-
-
